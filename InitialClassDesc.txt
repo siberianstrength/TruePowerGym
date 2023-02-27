@@ -15,3 +15,9 @@ str name, surname, last name
 str desc
 str preferences
 str result
+
+abo
+str number
+str data 
+date untill
+int amount_attended
