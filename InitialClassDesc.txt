@@ -1,4 +1,4 @@
-users (List<Person>)
+users (List(Person))
 
 Person
 str name, surname, last name
