@@ -33,7 +33,6 @@ class GuiWindow(arcade.View):
     def on_draw(self):
         arcade.start_render()
         if not self.insys:
-            # sleep(.02)
             self.background = arcade.load_texture(f'bg_files/back{self.i}.png')
             # self.background = arcade.load_animated_gif('black_hole.gif')
             arcade.draw_texture_rectangle(self.sw_2, self.sh_2, 1920, 1080, self.background)
@@ -45,6 +44,12 @@ class GuiWindow(arcade.View):
             arcade.draw_lrtb_rectangle_filled(self.xpos3, self.xpos4, self.ypos1, self.ypos2, white)
             arcade.draw_lrtb_rectangle_outline(self.xpos3, self.xpos4, self.ypos1, self.ypos2, grey, border_width= 3)
             self.ui_manager.draw()
+            if not self.isValid:
+                arcade.draw_text("Invalid data, try again",
+                 self.sw_2-100,
+                 self.buttony-20,
+                 font_size = 14,
+                 color = arcade.color.RED)
         else:
             arcade.start_render()
             arcade.set_background_color(self.background)
@@ -69,18 +74,14 @@ class GuiWindow(arcade.View):
                     
     def submit_data(self, *_):
         if self.login.text != 'Login' and self.password.text != 'Password':
-            self.isValid = True
             for each in self.login.text:
                 if not ((ord(each) >= 97 and ord(each) <= 122) or (ord(each) >= 65 and ord(each) <= 90)):
                     self.isValid = False
-                    # print("data is invalid")
-                    break
-            if self.isValid:
-                # print('data is valid')
-                self.check_data(self.login.text, self.password.text)
+                    return
+        self.check_data(self.login.text, self.password.text)
         
     def check_data(self, login, password):
-        with open('C:/Users/komme/Desktop/Study/Андрианова 3_2/customers_login_info.txt', 'r') as file:
+        with open('customers_login_info.txt', 'r') as file:
             data = np.array([line.split() for line in file.readlines()])
             for each in data:
                 if login == each[0]:
@@ -92,7 +93,9 @@ class GuiWindow(arcade.View):
                         self.login.text = 'Login'
                         self.password.text = 'Password'
                         self.ui_manager.disable()
-                        # print(self.login.text)
+                        self.isValid = True
+                        return
+        self.isValid = False
                         
     def on_mouse_motion(self, x, y, dx, dy):
         if x < self.sidebar_visibility_range:
@@ -132,6 +135,7 @@ class GuiWindow(arcade.View):
         self.xpos4 = self.width//1.65+self.width//16
         self.passwidth = self.logwidth = self.width//1.65-self.width//2.25
         self.passheight = self.logheight = self.height//2.5-self.height//5
+        self.isValid = True
         
         self.login = arcade.gui.UIInputText(
             x = self.xpos1,
