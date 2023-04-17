@@ -1,0 +1,3 @@
+user password Name1 Surname1
+admin admin Name2 Surname2
+a a n s

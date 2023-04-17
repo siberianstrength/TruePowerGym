@@ -1,0 +1,23 @@
+users (List<Person>)
+
+Person
+str name, surname, last name
+bool gender
+int age
+bitmap photo
+int form_number
+int abo_number
+str email
+str phone_number
+
+form 
+str name, surname, last name
+str desc
+str preferences
+str result
+
+abo
+str number
+str data 
+date untill
+int amount_attended
