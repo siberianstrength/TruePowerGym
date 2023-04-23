@@ -1,6 +1,7 @@
 from matplotlib.image import imsave  
 import cv2
 import numpy as np
+import arcade
 
 def gen(cap):
     while(cap.isOpened()):
@@ -12,6 +13,7 @@ def gen(cap):
                 break
         except:
             break
+        
 def generate_images():
     try:
         with open('bg_files/back0.png') as back:
@@ -31,5 +33,32 @@ def generate_images():
     cap.release()
     cv2.destroyAllWindows()
 
+
+
+class Buttons(arcade.View):
+    def add_texture_button(texture_file_name: str,
+                           hover_texture_file_name: str,
+                           press_texture_file_name: str,
+                           _scale: float = 1,
+                           _x: float = 0,
+                           _y: float = 0):
+        normal_texture = arcade.load_texture(texture_file_name)
+    
+        hover_texture = arcade.load_texture(hover_texture_file_name)
+    
+        press_texture = arcade.load_texture(press_texture_file_name)
+    
+        return arcade.gui.UITextureButton(
+            x=_x,
+            y=_y,
+            texture=normal_texture,
+            texture_hovered=hover_texture,
+            texture_pressed=press_texture,
+            scale=_scale
+        )
+
+
+
 if __name__ == "__main__":
-    generate_images()
+    pass
+    

@@ -3,8 +3,8 @@ import arcade
 import arcade.gui
 from time import sleep
 import numpy as np
-# import imgenerator
-
+from functions import Buttons
+from registration import Registration
 
 class GuiWindow(arcade.View):
     def __init__(self, my_window: arcade.Window, fullscreen = True):
@@ -20,7 +20,6 @@ class GuiWindow(arcade.View):
         self.sh_2 = self.height//2
         
         self.ui_manager = arcade.gui.UIManager(self.window)
-        # self.ui_manager.enable()
         self.setup_not_insys()
         for each in self.buttons_array:
             self.ui_manager.add(each)
@@ -29,12 +28,12 @@ class GuiWindow(arcade.View):
         self.setup_insys()
         for each in self.buttons_array_insys:
             self.ui_manager_insys.add(each)
+            
 
     def on_draw(self):
         arcade.start_render()
         if not self.insys:
-            self.background = arcade.load_texture(f'bg_files/back{self.i}.png')
-            # self.background = arcade.load_animated_gif('black_hole.gif')
+            self.background = arcade.load_texture(f'resources/bg_files/back{self.i}.png')
             arcade.draw_texture_rectangle(self.sw_2, self.sh_2, 1920, 1080, self.background)
             self.i += self.di
             if self.i == 239 or self.i == 0:
@@ -122,6 +121,10 @@ class GuiWindow(arcade.View):
         self.page = 'trs'
         return
     
+    def registration_on_click(self, *_):
+        self.registration_window.enabled = True
+        print(1)
+        
     def setup_not_insys(self, *_):
         # !insys
         self.ui_manager.enable()
@@ -169,6 +172,18 @@ class GuiWindow(arcade.View):
         self.buttons_array.append(self.submit_button)
         self.submit_button.on_click = self.submit_data
         
+        self.registration_button = Buttons.add_texture_button('resources/registration_1.jpg',
+                                                              'resources/registration_1.jpg',
+                                                              'resources/registration_1.jpg',
+                                                              _x = self.xpos3+self.passwidth+30,
+                                                              _y = self.ypos2,
+                                                              _scale = .04)
+        self.buttons_array.append(self.registration_button)
+        self.registration_button.on_click = self.registration_on_click
+        self.registration_window = Registration(0, 0, self.width, self.height)
+        self.section_manager.add_section(self.registration_window)
+        
+        
     def setup_insys(self, *_):
         # insys
         self.ui_manager_insys.enable()
@@ -191,7 +206,7 @@ class GuiWindow(arcade.View):
             y = self.qry,
             width = self.buttonwidth,
             text='QR')
-        self.qr_code_image = arcade.load_texture('qr_code.png')
+        self.qr_code_image = arcade.load_texture('resources/qr_code.png')
         self.buttons_array_insys.append(self.qrBtn)
         self.qrBtn.on_click = self.set_page_as_qr
         
