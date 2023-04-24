@@ -20,13 +20,6 @@ class GuiWindow(arcade.View):
         self.background = wenge
         self.sw_2 = self.width//2
         self.sh_2 = self.height//2
-
-        self.name = 'yakov'
-        self.surname = 'goncharov'
-        self.fathername = 'yevg'
-        self.gender = 'male'
-        self.DOB = '06.06.2002'
-        self.user_password = 'deadashell'
         
         self.ui_manager = arcade.gui.UIManager(self.window)
         self.setup_not_insys()
