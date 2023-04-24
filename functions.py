@@ -57,7 +57,9 @@ class Buttons(arcade.View):
             scale=_scale
         )
 
-
+def box(x, y):
+    arcade.draw_lrtb_rectangle_filled(x, x+250, y, y-40, arcade.color.WHITE)
+    arcade.draw_lrtb_rectangle_outline(x, x+250, y, y-40, arcade.color.BLACK, border_width= 3)
 
 if __name__ == "__main__":
     pass

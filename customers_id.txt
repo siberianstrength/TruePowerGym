@@ -1,0 +1,3 @@
+fuser fpass 0
+suser spass 1
+tuser tpass 2
