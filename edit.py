@@ -1,7 +1,8 @@
 import arcade
 from functions import box
 from functions import Buttons
-import numpy as np
+
+
 class Edit(arcade.Section):
     def __init__(self, left, bottom, width, height, params):
         super().__init__(left, bottom, width, height, modal = True)
@@ -16,7 +17,8 @@ class Edit(arcade.Section):
         self.gender = params[3]
         self.DOB = params[4]
         self.user_password = params[5]
-        self.user_id = params[6]
+        self.email = params[6]
+        self.user_id = params[7]
         self.manager = arcade.gui.UIManager(self.window)
         black = arcade.color.BLACK
         self.logwidth = 200
@@ -82,6 +84,7 @@ class Edit(arcade.Section):
             width = self.logwidth,
             height = self.logheight,
             text=f'{self.user_password}')
+        
         self.container.append(self._name)
         self.container.append(self._surname)
         self.container.append(self._fathername)
@@ -114,9 +117,9 @@ class Edit(arcade.Section):
         self.manager.enable()
 
     def submit_on_click(self, *_):
-        infoarr = [self._name.text, self._surname.text, self._fathername.text, self._gender.text, self._DOB.text, self._user_password.text]
+        infoarr = [self._name.text, self._surname.text, self._fathername.text, self._gender.text, self._DOB.text, self._user_password.text, self.email, self.user_id]
         info = ' '.join(str(infoarr[i]) for i in range(len(infoarr)))
-        with open(f'customers_login_info/customer{self.user_id}.txt', 'w') as file:
+        with open(f'customers_login_info/login/customer{self.user_id}.txt', 'w') as file:
             file.write(info)
         self.enabled = False
 
