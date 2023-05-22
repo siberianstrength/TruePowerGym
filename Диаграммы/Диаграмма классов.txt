@@ -1,0 +1,106 @@
+@startuml Class Diagram 
+
+class GUI
+{
++ __init__(self, window, fullscreen)
++preload()
++on_draw(self)
++on_mouse_press(self, x, y, button)
++submit_data(self)
++check_data(self)
++on_mouse_motion(self, x, y, dx, y)
++sys_exit(self)
++set_page_as_main(self)
++set_page_as_qr(self)
++trainings_on_click(self)
++infopage(self)
++registration_on_click(self)
++logopic_on_click(self)
++health_formBtn_on_click(self)
++underscore(self, x, y, length)
++editBtn_on_click(self)
++edit_hf_on_click(self)
++member_black_on_click(self)
++member_yellow_on_click(self)
++member_blue_on_click(self)
++member_red_on_click(self)
++get_info(self)
++renew_hf_on_click(self)
++setup_not_insys(self)
++setup_insys(self)
+}
+
+class arcade.Section
+{
++...
++__init__(left int, bottom int, width int, height int)
++...(...)
+}
+
+class sections.edit_hf
+{
++__init__(left int, bottom int, width int, height int)
++on_draw(self)
++submit_on_click(self)
+}
+
+class sections.Registration
+{
++__init__(left int, bottom int, width int, height int)
++submit_on_click()
++on_draw()
++close_on_click(self)
++checkinfo(self)
+}
+
+class sections.Trainings
+{
++__init__(left int, bottom int, width int, height int)
++on_draw(self)
++get_info(self)
++get_trainer_time(self)
++draw_timetable(self)
++check_info(self)
++tr1_on_click(self)
++tr2_on_click(self)
++tr3_on_click(self)
++poolB_on_click(self)
++cardioB_on_click(self)
++strengthB_on_click(self)
+}
+
+class sections.Edit
+{
++__init__(left int, bottom int, width int, height int)
++on_draw(self)
++submit_on_click(self)
+}
+
+class sections.Cards
+{
++__init__(left int, bottom int, width int, height int)
++on_draw(self)
++get_card(self)
++close_on_click(self)
+}
+
+
+
+GUI --|> arcade.View
+
+edit_hf -|> arcade.Section
+Trainings -|> arcade.Section
+Registration-|> arcade.Section
+Edit-|> arcade.Section
+Cards-|> arcade.Section
+
+class arcade.View
+{
++...
++__init__(window: Window = None)
++...()
+}
+
+
+
+@enduml

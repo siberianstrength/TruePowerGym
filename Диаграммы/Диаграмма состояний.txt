@@ -1,0 +1,32 @@
+@startuml
+
+[*] --> Active
+
+state Active {
+  [*] --> Main
+  Main --> HealthFormPage: gui.health_formBtn_on_click()
+  HealthFormPage --> Main: gui.logopic_on_click()
+  Main : // Установлена главная страница\ngui.subpage = 'info'
+  HealthFormPage: // Установлена страница с формой здоровья\ngui.subpage = 'form'
+  
+  ||
+  
+  [*] --> RegistrationClosed
+  
+  RegistrationClosed-> AnimationMenuOpened : gui.registration_on_click()
+  AnimationMenuOpened -> RegistrationClosed: registration_window.submit_on_click(),\nregistration_window.close_on_click()
+  RegistrationClosed: // Меню закрыто\nregistration_window.enabled = False  
+  AnimationMenuOpened: // Меню открыто\nregistration_window.enabled = True
+  
+  ||
+  
+  [*] --> MainPageClosed
+  MainPageClosed--> MainPageOpened: submit_data(),\nsubmit_button.on_click
+  MainPageOpened--> MainPageClosed: sys_exit(),\nexitBtn.on_click
+  MainPageClosed: // Пользователь на странице авторизации\ngui.insys = False
+  MainPageOpened: // Пользователь на главной странице\ngui.insys = True
+}
+
+Active --> [*]
+
+@enduml

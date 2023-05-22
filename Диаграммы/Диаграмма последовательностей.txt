@@ -1,0 +1,8 @@
+@startuml
+Window-> "gui" : window.show_view(GUI())
+"gui" -> "Registration menu" : registration_on_click()
+"Registration menu" -> "Buttons" : add_texture_button(textures, _x, _y, scale)
+"Buttons" --> "Registration menu" : arcade.gui.UITextureButton(textures, _x, _y_ scale)
+"Registration menu" --> "gui" : close_on_click()
+"gui" --> "Window"
+@enduml

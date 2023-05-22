@@ -1,0 +1,32 @@
+@startuml
+node FrontEnd{
+component registration
+component login
+component password
+component "health form"
+component add_note
+component submit_note
+component renew_info_hf
+component edit_info
+component submit_info
+component renew_info
+component abonemet_black
+component abonement_blue
+component abonement_red
+component abonement_yellow
+component close_button
+component trainings
+component info
+component QR
+component main
+component exit
+component trainers
+}
+
+node BackEnd {
+component on_click_event
+}
+
+FrontEnd -(0)- BackEnd : RAM
+
+@enduml

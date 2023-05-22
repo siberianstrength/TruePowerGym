@@ -1,0 +1,16 @@
+@startuml
+package "Application" {
+  [Gui]
+  [views]
+  package "Sections" {
+    [Trainings]
+    [Cards]
+    [Registration]
+    [Edit]
+    [edit_hf]
+                      }
+  package "resources" {
+    [images]
+}
+}
+@enduml
