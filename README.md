@@ -19,4 +19,7 @@ OOP fitness app project.
 
 Данне для входа находсятся в папке customers_login_ingo/login, формы здоровья клиентов находятся в папке customers_login_info/health_forms
 
+Расписания каждого тренера лежит в папке trainers
+
+Запланированные тренировки лежат в папке trainings
 
